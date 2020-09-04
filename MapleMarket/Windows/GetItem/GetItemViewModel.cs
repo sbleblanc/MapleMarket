@@ -22,7 +22,7 @@ namespace MapleMarket.Windows.GetItem
         private ICommand _CmdCancelSelection;
         private ICommand _CmdLoadInitialData;
 
-
+        private IGlobalConfigurations _GlobalConf;
         private Timer _SearchTimer;
         private List<Item> _AllItems;
         private IEnumerable<IGrouping<int, Item>> _CurrentFilteredItems;
@@ -154,9 +154,9 @@ namespace MapleMarket.Windows.GetItem
 
         public IViewFactory ViewFactory { get; set; }
 
-        public GetItemViewModel()
+        public GetItemViewModel(IGlobalConfigurations globalConf)
         {
-            
+            _GlobalConf = globalConf;
             CmdUpdateResearchTimer = new RelayCommand(() => UpdateSearchTimer(), () => true);
             CmdAcceptSelection = new RelayCommand(() => AcceptSelection(), () => SelectedItem != null);
             CmdCancelSelection = new RelayCommand(() => CancelSelection(), () => true);
@@ -231,7 +231,7 @@ namespace MapleMarket.Windows.GetItem
             {
                 _AllItems = await Task.Run(() =>
                 {
-                    using (var context = new MapleMarketEntities())
+                    using (var context = new MapleMarketEntities(_GlobalConf.ConnectionString))
                     {
                         var itemQuery = from i in context.Item.AsNoTracking()
                                         select i;

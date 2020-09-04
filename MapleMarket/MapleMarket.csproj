@@ -169,12 +169,14 @@
     <Compile Include="Event.cs">
       <DependentUpon>MapleMarketModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="IGlobalConfigurations.cs" />
     <Compile Include="Item.cs">
       <DependentUpon>MapleMarketModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemStats.cs">
       <DependentUpon>MapleMarketModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MapleMarketEntites.cs" />
     <Compile Include="MapleMarketModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -189,6 +191,7 @@
     <Compile Include="Stats.cs">
       <DependentUpon>MapleMarketModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utils\GlobalConfig.cs" />
     <Compile Include="Windows\BaseWindow.cs" />
     <Compile Include="Windows\GetItem\GetItemViewModel.cs" />
     <Compile Include="Windows\InsertPrice\IInsertPrice.cs" />
@@ -206,6 +209,7 @@
     <Compile Include="Windows\IView.cs" />
     <Compile Include="Windows\IViewFactory.cs" />
     <Compile Include="Windows\IViewModel.cs" />
+    <Compile Include="Windows\LocalViewModelBase.cs" />
     <Compile Include="Windows\MainWindow\MainWindowViewModel.cs" />
     <Compile Include="Windows\ViewFactory.cs" />
     <Page Include="Windows\MainWindow\MainWindow.xaml">
@@ -7275,10 +7279,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

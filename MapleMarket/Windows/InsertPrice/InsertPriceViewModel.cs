@@ -20,6 +20,7 @@ namespace MapleMarket.ViewModels
         // Commands
         private ICommand _CmdGetMapleItem;
 
+        private IGlobalConfigurations _GlobalConfig;
         private Regex _PriceRgx;
         private Item _SelectedMapleItem = null;
         private long _Price;
@@ -171,8 +172,9 @@ namespace MapleMarket.ViewModels
 
         
 
-        public InsertPriceViewModel()
+        public InsertPriceViewModel(IGlobalConfigurations globalConf)
         {
+            _GlobalConfig = globalConf;
             _PriceRgx = new Regex(@"^(\d+([\.\,]\d+)?)\s*([kmb])$", RegexOptions.IgnoreCase);
             CmdGetMapleItem = new AsyncCommand(() => GetMapleItem(), (o) => true);
             _Sold = false;

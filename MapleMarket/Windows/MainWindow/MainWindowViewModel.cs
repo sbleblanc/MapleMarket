@@ -20,6 +20,7 @@ namespace MapleMarket.Windows.MainWindow
         public event RequestViewOpeningHandler RequestViewOpening;
 
         private ICommand _CmdSelectItem;
+        private IGlobalConfigurations _GlobalConf;
 
         public ICommand CmdSelectItem
         {
@@ -34,8 +35,9 @@ namespace MapleMarket.Windows.MainWindow
             }
         }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IGlobalConfigurations globalConf)
         {
+            _GlobalConf = globalConf;
             _CmdSelectItem = new AsyncCommand(() => SelectMapleItem(), (o) => true);
         }
 

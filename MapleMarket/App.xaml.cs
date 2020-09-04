@@ -1,4 +1,5 @@
-﻿using MapleMarket.ViewModels;
+﻿using MapleMarket.Utils;
+using MapleMarket.ViewModels;
 using MapleMarket.Windows;
 using MapleMarket.Windows.GetItem;
 using MapleMarket.Windows.InsertPrice;
@@ -22,10 +23,12 @@ namespace MapleMarket
 
         public App()
         {
+            GlobalConfig.Instance.ConnectionString = @"metadata=res://*/MapleMarketModel.csdl|res://*/MapleMarketModel.ssdl|res://*/MapleMarketModel.msl;provider=MySql.Data.MySqlClient;provider connection string='server=belandls.ca;user id=maplemarket;password=Maple!Market123;database=maple_market'";
+
             ViewFactory = new ViewFactory();
-            ViewFactory.RegisterView<MainWindow, MainWindowViewModel>(new MainWindowViewModel());
-            ViewFactory.RegisterView<GetItem, IGetItem>(new GetItemViewModel());
-            ViewFactory.RegisterView<InsertPrice, IInsertPrice>(new InsertPriceViewModel());
+            ViewFactory.RegisterView<MainWindow, MainWindowViewModel>(new MainWindowViewModel(GlobalConfig.Instance));
+            ViewFactory.RegisterView<GetItem, IGetItem>(new GetItemViewModel(GlobalConfig.Instance));
+            ViewFactory.RegisterView<InsertPrice, IInsertPrice>(new InsertPriceViewModel(GlobalConfig.Instance));
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)

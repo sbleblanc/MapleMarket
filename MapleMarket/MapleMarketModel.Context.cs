@@ -15,9 +15,10 @@ namespace MapleMarket
     
     public partial class MapleMarketEntities : DbContext
     {
-        public MapleMarketEntities()
-            : base("name=MapleMarketEntities")
+        public MapleMarketEntities(string connStr)
+            : base(connStr)
         {
+    
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
