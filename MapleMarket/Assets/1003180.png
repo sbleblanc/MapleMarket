@@ -1,0 +1,553 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+	<head>
+	
+		<title>MapleRoyals</title>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="description" content="MapleRoyals" />
+		<meta name="keywords" content="Nostalgic,v62,v83,private,server,website,design,maple,royals,mapleroyals" />
+		
+		<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+		<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+		<link rel="manifest" href="/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffc40d">
+		<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+		<link rel=stylesheet type="text/css" href="css/style.css">
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<script>
+		var _prum = [['id', '5682f185abe53d7810718593'],
+		             ['mark', 'firstbyte', (new Date()).getTime()]];
+		(function() {
+		    var s = document.getElementsByTagName('script')[0]
+		      , p = document.createElement('script');
+		    p.async = 'async';
+		    p.src = '//rum-static.pingdom.net/prum.min.js';
+		    s.parentNode.insertBefore(p, s);
+		})();
+		</script>
+
+		<script type="text/javascript">
+			var removeFallback = function() {
+				var cap = document.getElementById('captcha'),
+				    recap = document.getElementById('recaptcha');
+				if (cap) { cap.style.display = 'none'; }
+				if (recap) { grecaptcha.render('recaptcha', {
+					'sitekey' : '6Le-P-oSAAAAANjJkKaNz7SnWYe10asu6KRZhn6I'
+				})};
+				var lcap = document.getElementById('logincaptcha'),
+				    lrecap = document.getElementById('loginrecaptcha');
+				if (lcap) { lcap.style.display = 'none'; }
+				if (lrecap) { grecaptcha.render('loginrecaptcha', {
+					'sitekey' : '6Le-P-oSAAAAANjJkKaNz7SnWYe10asu6KRZhn6I',
+					'size': 'compact'
+				})};
+			};
+		</script>
+                <script src="https://www.google.com/recaptcha/api.js?onload=removeFallback&render=explicit" async defer></script>
+		
+	</head>
+	
+	<body>
+	
+		<div id="infobar">
+			<marquee behavior="scroll" scrollamount="6" direction="left">
+				Welcome to MapleRoyals! 3.2x EXP / 4x Meso / 2x Drop			</marquee>
+		</div>
+	
+		<center>
+			<a href="?page=index"></br></br><img src="logo.png" style="margin: 10px auto;"></a>
+		</center>
+		
+		<div id="subtext">
+					</div>
+	
+		<div id="wrapper">
+		
+			<div class="links">
+				<a href="?page=index" title="Home">Home</a>
+				<!--<a href="https://mapleroyals.com/beta/?page=index" title="Home">Open Beta</a>-->
+				<a href="forum/" title="Forum">Forum</a>
+				<a href="?page=register" title="Register">Register</a>
+				<a href="?page=download" title="Download">Download</a>
+				<a href="?page=vote" title="Vote">Vote For NX</a>
+				<!--<a href="?page=ranking" title="Ranking">Ranking</a>-->
+				<a href="?page=royalpoints" title="Get RoyalPoints">Get RoyalPoints</a>
+				<a href="https://mapleroyals.com/library" title="Library">Library <img src="/images/beta.gif" valign="top"></a>
+			</div>
+		
+			<div id="table">
+				
+						<div class="sidebar">
+			<html>
+			
+			<script type="text/javascript">
+
+			var currenttime = 'August 18, 2020 02:46:38' 
+			var montharray=new Array("January","February","March","April","May","June","July","August","September","October","November","December")
+			var serverdate=new Date(currenttime)
+
+			function padlength(what){
+			var output=(what.toString().length==1)? "0"+what : what
+			return output
+			}
+
+			function displaytime(){
+			serverdate.setSeconds(serverdate.getSeconds()+1)
+			var datestring=montharray[serverdate.getMonth()]+" "+padlength(serverdate.getDate())+", "+serverdate.getFullYear()
+			var timestring=padlength(serverdate.getHours())+":"+padlength(serverdate.getMinutes())+":"+padlength(serverdate.getSeconds())
+			document.getElementById("servertime").innerHTML=datestring+" "+timestring+ " (GMT)"
+			}
+
+			window.onload=function(){
+			setInterval("displaytime()", 1000)
+			}
+
+			</script>
+
+			</html>
+			<h1>
+				<a target="_blank" href="https://mapleroyals.com/controlpanel/"><img src="/images/control-panel-button.png" style="display: block; margin: auto;"></img></a>
+				<a target="_blank" href="https://mapleroyals.com/controlpanel/" style="display: block; margin: auto; text-align: center; font-size: 0.7em;">Manage Your Account</a>
+			</h1>
+			
+			
+			
+			</br>
+			
+			<h2>
+				Server Time
+			</h2>
+			<html>
+			<center>
+			<p><b><span id="servertime"></span></b></p>
+			</center>
+			</html>	
+					
+			<h2 style="margin-top: 20px;">
+				Status
+			</h2>
+			
+				<span id="onlinestatus">
+	<center>
+		<img id="onlineimage" src="images/online.png" />
+	</center>
+</span>
+
+<center>
+<br />
+Players Online: <span id="onlinecount">-</span>
+<br />
+EXP Rate: 3.2x<br />
+Meso Rate: 4x<br />
+Drop Rate: 2x</center>
+<script>
+	(function(){
+		$.ajax({
+		  method: "GET",
+		  url: "https://mapleroyals.com/api/v1/get_status"
+		})
+		.done(function( msg ) {
+			$("#onlinecount").text(msg["onlineCount"]);
+			
+			if (msg["online"]) {
+				$("#onlineimage").attr("src", "images/online.png");
+			} else {
+				$("#onlineimage").attr("src", "images/offline.png");
+			}
+		});
+		
+		setTimeout(arguments.callee, 5000);
+	})();
+</script>
+
+			<h2 style="margin-top: 20px;">
+				Discord
+			</h2>
+
+			<center>
+			<iframe src="https://discord.com/widget?id=124862059950112771&theme=light" width="350" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+			</center>			
+
+			<h2 style="margin-top: 20px;">
+				Powered By:				
+			</h2>
+			
+				<center><br><a href='https://www.limestonenetworks.com/?utm_campaign=rwreferrer&utm_medium=affiliate&utm_source=RFR2217'><img src='images/LSN.png'></a><br><br><a href='https://www.incapsula.com/'><img src='images/Incapsula.png'></a></center>				
+			
+		</div>
+
+		
+<div id="main">
+
+
+			<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<table width="100%" border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td valign="top" width="287"><div id="main">
+<div class="block">
+<table width="580px" border="0" cellpadding="0" cellspacing="0">
+	<tbody>
+	    <tr>
+	        <td width="84">
+	            <span style="float: left;">
+	            <div class="alternate">Notices</div></span>
+		    </td>
+	    </tr>
+
+	    <tr>
+	        <td height="2" />
+	    </tr>
+
+	    <tr>
+	        <td colspan="3" style="background: #B5B5B5;" height="1"></td>
+	    </tr>
+	    <tr>
+	         <td height="4" />
+	    </tr></div>
+
+	
+	<tr>
+		<td>
+				<img src="images/news/ct_news_notice_notice.png" alt='ct_news_notice_notice' />
+						</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+				[08.17]
+				
+				 <a href="?page=news&id=419">Promoting Twitch Streams</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+				<b>582</b> views
+			</td>
+	
+	<tr>
+		<td>
+				<img src="images/news/ct_news_notice_notice.png" alt='ct_news_notice_notice' />
+						</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+				[08.05]
+				
+				 <a href="?page=news&id=418">Server Check 05/08/20</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+				<b>2827</b> views
+			</td>
+	
+	<tr>
+		<td>
+				<img src="images/news/ct_news_notice_notice.png" alt='ct_news_notice_notice' />
+						</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+				[07.31]
+				
+				 <a href="?page=news&id=417">Server Check 31/07/2020</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+				<b>3095</b> views
+			</td>
+	
+	<tr>
+		<td>
+				<img src="images/news/ct_news_notice_notice.png" alt='ct_news_notice_notice' />
+						</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+				[07.20]
+				
+				 <a href="?page=news&id=416">Optional Patch 20/07/2020</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+				<b>5609</b> views
+			</td>
+	
+	<tr>
+		<td>
+				<img src="images/news/ct_news_notice_notice.png" alt='ct_news_notice_notice' />
+						</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+				[07.12]
+				
+				 <a href="?page=news&id=415">Update #66.1 12/07/2020</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+				<b>8301</b> views
+			</td>
+	
+	<tr>
+		<td>
+				<img src="images/news/ct_news_notice_notice.png" alt='ct_news_notice_notice' />
+						</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+				[07.12]
+				
+				 <a href="?page=news&id=414">Patch 12/07/2020</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+				<b>4218</b> views
+			</td>
+	
+	<tr>
+		<td>
+				<img src="images/news/ct_news_notice_notice.png" alt='ct_news_notice_notice' />
+						</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+				[07.03]
+				
+				 <a href="?page=news&id=413">Update #66 02/07/2020</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+				<b>5367</b> views
+			</td>
+	
+	<tr>
+		<td>
+				<img src="images/news/ct_news_notice_notice.png" alt='ct_news_notice_notice' />
+						</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+				[07.02]
+				
+				 <a href="?page=news&id=412">Patch 02/07/2020</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+				<b>13132</b> views
+			</td>
+	
+	<tr>
+		<td>
+				<img src="images/news/ct_news_notice_notice.png" alt='ct_news_notice_notice' />
+						</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+				[06.15]
+				
+				 <a href="?page=news&id=411">Server Check 15/06/20</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+				<b>10384</b> views
+			</td>
+	
+	<tr>
+		<td>
+				<img src="images/news/ct_news_notice_notice.png" alt='ct_news_notice_notice' />
+						</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+				[05.24]
+				
+				 <a href="?page=news&id=410">Server Check 24/05/20</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+				<b>19892</b> views
+			</td>
+      </tbody>
+</table>
+</div>
+</div>
+
+								</td>
+								</tr><tr>
+								<td valign="top" width="11" /></tr>
+								<tr>
+								<td valign="top" width="284"><div id="main">
+<div class="block">
+<table width="580px" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="84">
+			<span style="float: left;">
+	            <div class="alternate">Events</div></span>
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td height="2" />
+	</tr>
+	<tr>
+		<td colspan="3" style="background: #B5B5B5;" height="1"></td>
+	</tr>
+	<tr>
+		<td height="4" />
+	</tr>
+	<tr>
+	<tr>
+		<td>
+			<img src="images/news/ct_news_event_info.png" alt='' />
+		</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+			[07.31]  
+			<a href="?page=events&id=80">Summer Bonus +?% Exp/Drop/Mesos</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+			<b>3815</b> views
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="images/news/ct_news_event_info.png" alt='' />
+		</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+			[07.14]  
+			<a href="?page=events&id=79">Chair Gachapon (Round 4)</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+			<b>4250</b> views
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="images/news/ct_news_event_info.png" alt='' />
+		</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+			[07.03]  
+			<a href="?page=events&id=78">7th Anniversary</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+			<b>10015</b> views
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="images/news/ct_news_event_info.png" alt='' />
+		</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+			[06.02]  
+			<a href="?page=events&id=77">2x Vote NX & Midnight Resets</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+			<b>11345</b> views
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="images/news/ct_news_event_info.png" alt='' />
+		</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+			[04.18]  
+			<a href="?page=events&id=76">Easter 2020</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+			<b>16964</b> views
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="images/news/ct_news_event_info.png" alt='' />
+		</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+			[03.28]  
+			<a href="?page=events&id=75">Spring EXP/Drop/Mesos Bonus</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+			<b>34540</b> views
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="images/news/ct_news_event_info.png" alt='' />
+		</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+			[02.14]  
+			<a href="?page=events&id=74">Valentines 2020</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+			<b>16419</b> views
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="images/news/ct_news_event_info.png" alt='' />
+		</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+			[01.22]  
+			<a href="?page=events&id=73">Lunar New Year 2020</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+			<b>15440</b> views
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="images/news/ct_news_event_info.png" alt='' />
+		</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+			[12.12]  
+			<a href="?page=events&id=72">Christmas 2019</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+			<b>15805</b> views
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<img src="images/news/ct_news_event_info.png" alt='' />
+		</td>
+		<td>
+		<div align="left" valign="left" style="margin-left: -35px;">
+			[11.24]  
+			<a href="?page=events&id=71">Thanksgiving 2019</a>
+		</div></td>
+		<td align="right" style="padding: 4px;">
+			<b>14258</b> views
+		</td>
+	</tr>
+	<tr>
+		<td height="4" />
+	</tr></div>
+</div>
+</table>
+</div>
+</div>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				</table>							<div class="block">
+				<h2>
+					Featured Video
+				</h2>
+			
+				<ul>
+					<iframe frameborder="0" width="480" height="270" src="https://www.dailymotion.com/embed/video/x7n0qvu" allowfullscreen allow="autoplay"></iframe>					
+				</ul>
+			</div>
+
+</div>			</div>
+			</div>
+
+	</body>
+	
+</html>

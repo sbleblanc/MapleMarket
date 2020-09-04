@@ -1,0 +1,148 @@
+﻿<win:BaseWindow x:Class="MapleMarket.Windows.InsertPrice.InsertPrice"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MapleMarket.Views"
+                xmlns:cc="clr-namespace:MapleMarket.CustomControls"
+        xmlns:win="clr-namespace:MapleMarket.Windows"
+        mc:Ignorable="d"
+        Title="InsertPrice" Height="450" Width="800" UseLayoutRounding="True"
+                WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <Style x:Key="sErrorTb"
+               TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError"
+                         Value="True">
+                    <Setter Property="BorderBrush"
+                            Value="Red"></Setter>
+                    <Setter Property="BorderThickness"
+                            Value="2"></Setter>
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        
+        
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <cc:TextHeaderedControl HeaderText="Maple Item Selection"
+                                Margin="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button Margin="5"
+                    Command="{Binding CmdGetMapleItem}">
+                    <Button.Content>
+                        <TextBlock TextAlignment="Center"
+                               Text="Select&#x0a;Item"></TextBlock>
+                    </Button.Content>
+                </Button>
+
+                <local:MapleItemViewer Grid.Column="1"
+                                   DataContext="{Binding SelectedMapleItem}"></local:MapleItemViewer>
+            </Grid>
+        </cc:TextHeaderedControl>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <cc:TextHeaderedControl Grid.Row="0"
+                                Margin="5"
+                                HeaderText="Price Information">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Margin="0,0,5,0"
+                           Text="Price :"></TextBlock>
+
+                    <TextBlock Grid.Row="1"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Margin="0,0,5,0"
+                           Text="Sold :"></TextBlock>
+
+                    <TextBlock Grid.Row="2"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Margin="0,0,5,0"
+                           Text="Source :"></TextBlock>
+
+                    <TextBox x:Name="txtbPrice"
+                         Grid.Row="0"
+                         Grid.Column="1"
+                         Height="23"
+                         VerticalContentAlignment="Center"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         Margin="5,0"
+                         GotFocus="txtbPrice_GotFocus"
+                         PreviewMouseDown="txtbPrice_PreviewMouseDown"
+                         Style="{StaticResource sErrorTb}"
+                         Text="{Binding PriceStr, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnExceptions=True}"></TextBox>
+
+                    <CheckBox Grid.Row="1"
+                          Grid.Column="1"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          Margin="5,0,0,0"
+                          IsChecked="{Binding Sold, Mode=TwoWay}"></CheckBox>
+
+                    <ComboBox Grid.Row="2"
+                          Grid.Column="1"
+                          Height="23"
+                          Margin="5,0"
+                          ItemsSource="{Binding SourceChoices}"
+                          SelectedValue="{Binding Source, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></ComboBox>
+                </Grid>
+
+            </cc:TextHeaderedControl>
+
+            <cc:TextHeaderedControl Grid.Row="1"
+                                    Margin="5"
+                                    HeaderText="Active Events">
+                <!--<ListBox Height="100"
+                         Margin="5"
+                         ItemsSource="{Binding EventChoices}"
+                         SelectionMode="Multiple"
+                         SelectedItems="{Binding SelectedEvents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         DisplayMemberPath="name"></ListBox>-->
+            </cc:TextHeaderedControl>
+
+        </Grid>
+
+        
+        
+        
+
+    </Grid>
+</win:BaseWindow>

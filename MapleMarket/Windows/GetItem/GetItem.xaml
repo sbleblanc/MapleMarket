@@ -1,0 +1,130 @@
+﻿<win:BaseWindow x:Class="MapleMarket.Windows.GetItem.GetItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:MapleMarket.Views"
+        xmlns:win="clr-namespace:MapleMarket.Windows"
+        xmlns:conv="clr-namespace:MapleMarket.Converters"
+        mc:Ignorable="d"
+        Title="Select an item" Height="495.937" Width="338.75"
+        UseLayoutRounding="True" Closing="BaseWindow_Closing"
+                WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <conv:ImageToAssetConverter x:Key="ImageToAssetConverter"></conv:ImageToAssetConverter>
+        <conv:CategoryIdToNameConverter x:Key="CategoryIdToNameConverter"></conv:CategoryIdToNameConverter>
+        <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></conv:BooleanToVisibilityConverter>
+
+        <DataTemplate x:Key="dtItemList">
+            <Expander Header="{Binding Key, Converter={StaticResource CategoryIdToNameConverter}}"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      IsExpanded="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.IsFiltered, Mode=OneWay}">
+                <ListBox ItemsSource="{Binding}"
+                         PreviewMouseWheel="ListBox_PreviewMouseWheel"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         SelectedValue="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding image, Converter={StaticResource ImageToAssetConverter}}"
+                                           Width="35"
+                                           Height="35"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Stretch="None"></Image>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Expander>
+        </DataTemplate>
+        
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding Path=CmdLoadInitialData, Mode=OneWay}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Search :"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="5,0,0,0"></TextBlock>
+            <TextBox Name="txtSearch"
+                     Grid.Column="1"
+                     HorizontalAlignment="Stretch"
+                     VerticalAlignment="Center"
+                     Margin="5,0"
+                     Text="{Binding SearchFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding Path=CmdUpdateResearchTimer, Mode=OneWay}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </Grid>
+
+        <local:MapleItemViewer Grid.Row="1"
+                               DataContext="{Binding SelectedItem}"></local:MapleItemViewer>
+
+        <ItemsControl Grid.Row="2"
+                      ItemsSource="{Binding CurrentFilteredItems}"
+                      ItemTemplate="{StaticResource dtItemList}">
+            <ItemsControl.Template>
+                <ControlTemplate>
+                    <ScrollViewer>
+                        <ItemsPresenter></ItemsPresenter>
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+        </ItemsControl>
+
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <Button Content="Select"
+                    Margin="0,0,20,0"
+                    Padding="5,1,5,1"
+                    Command="{Binding CmdAcceptSelection}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"></Button>
+            <Button Content="Cancel"
+                    Padding="5,1,5,1"
+                    Command="{Binding CmdCancelSelection}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"></Button>
+        </StackPanel>
+
+        <Grid Grid.RowSpan="4"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Rectangle HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch"
+                       Fill="White"
+                       Opacity="0.6"></Rectangle>
+            <TextBlock Text="Loading Maple Items from database..."
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"></TextBlock>
+        </Grid>
+
+    </Grid>
+</win:BaseWindow>
+
+    
+    

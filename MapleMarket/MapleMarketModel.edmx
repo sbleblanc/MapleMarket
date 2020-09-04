@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="maple_marketModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="event">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="maple_id" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="category" Type="int" Nullable="false" />
+          <Property Name="image" Type="varchar" MaxLength="100" />
+          <Property Name="min_str" Type="int" Nullable="false" />
+          <Property Name="max_str" Type="int" Nullable="false" />
+          <Property Name="min_dex" Type="int" Nullable="false" />
+          <Property Name="max_dex" Type="int" Nullable="false" />
+          <Property Name="min_int" Type="int" Nullable="false" />
+          <Property Name="max_int" Type="int" Nullable="false" />
+          <Property Name="min_luk" Type="int" Nullable="false" />
+          <Property Name="max_luk" Type="int" Nullable="false" />
+          <Property Name="min_watt" Type="int" Nullable="false" />
+          <Property Name="max_watt" Type="int" Nullable="false" />
+          <Property Name="min_matt" Type="int" Nullable="false" />
+          <Property Name="max_matt" Type="int" Nullable="false" />
+          <Property Name="min_hp" Type="int" Nullable="false" />
+          <Property Name="max_hp" Type="int" Nullable="false" />
+          <Property Name="min_acc" Type="int" Nullable="false" />
+          <Property Name="max_acc" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="item_stats">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_id" Type="int" Nullable="false" />
+          <Property Name="stats_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="price">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_stats_id" Type="int" Nullable="false" />
+          <Property Name="price" Type="bigint" Nullable="false" />
+          <Property Name="sold" Type="bool" Nullable="false" />
+          <Property Name="source" Type="enum" Nullable="false" />
+          <Property Name="timestamp" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="price_event">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="price_id" Type="int" Nullable="false" />
+          <Property Name="event_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="stats">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="str" Type="int" Nullable="false" />
+          <Property Name="dex" Type="int" Nullable="false" />
+          <Property Name="int" Type="int" Nullable="false" />
+          <Property Name="luk" Type="int" Nullable="false" />
+          <Property Name="w_att" Type="int" Nullable="false" />
+          <Property Name="m_att" Type="int" Nullable="false" />
+          <Property Name="slots" Type="int" Nullable="false" />
+          <Property Name="hp" Type="int" Nullable="false" />
+          <Property Name="acc" Type="int" Nullable="false" />
+          <Property Name="percent" Type="enum" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_item_item_stats">
+          <End Role="stats" Type="Self.stats" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="item_stats" Type="Self.item_stats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stats">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="item_stats">
+              <PropertyRef Name="stats_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_price_event_event">
+          <End Role="event" Type="Self.event" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="price_event" Type="Self.price_event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="event">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="price_event">
+              <PropertyRef Name="event_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_price_event_price">
+          <End Role="price" Type="Self.price" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="price_event" Type="Self.price_event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="price">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="price_event">
+              <PropertyRef Name="price_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_price_item_stats">
+          <End Role="item_stats" Type="Self.item_stats" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="price" Type="Self.price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item_stats">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="price">
+              <PropertyRef Name="item_stats_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_stats_item_stats">
+          <End Role="item" Type="Self.item" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="item_stats" Type="Self.item_stats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="item_stats">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="maple_marketModelStoreContainer">
+          <EntitySet Name="event" EntityType="Self.event" Schema="maple_market" store:Type="Tables" />
+          <EntitySet Name="item" EntityType="Self.item" Schema="maple_market" store:Type="Tables" />
+          <EntitySet Name="item_stats" EntityType="Self.item_stats" Schema="maple_market" store:Type="Tables" />
+          <EntitySet Name="price" EntityType="Self.price" Schema="maple_market" store:Type="Tables" />
+          <EntitySet Name="price_event" EntityType="Self.price_event" Schema="maple_market" store:Type="Tables" />
+          <EntitySet Name="stats" EntityType="Self.stats" Schema="maple_market" store:Type="Tables" />
+          <AssociationSet Name="fk_item_item_stats" Association="Self.fk_item_item_stats">
+            <End Role="stats" EntitySet="stats" />
+            <End Role="item_stats" EntitySet="item_stats" />
+          </AssociationSet>
+          <AssociationSet Name="fk_price_event_event" Association="Self.fk_price_event_event">
+            <End Role="event" EntitySet="event" />
+            <End Role="price_event" EntitySet="price_event" />
+          </AssociationSet>
+          <AssociationSet Name="fk_price_event_price" Association="Self.fk_price_event_price">
+            <End Role="price" EntitySet="price" />
+            <End Role="price_event" EntitySet="price_event" />
+          </AssociationSet>
+          <AssociationSet Name="fk_price_item_stats" Association="Self.fk_price_item_stats">
+            <End Role="item_stats" EntitySet="item_stats" />
+            <End Role="price" EntitySet="price" />
+          </AssociationSet>
+          <AssociationSet Name="fk_stats_item_stats" Association="Self.fk_stats_item_stats">
+            <End Role="item" EntitySet="item" />
+            <End Role="item_stats" EntitySet="item_stats" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="maple_marketModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="price_event" Relationship="Self.fk_price_event_event" FromRole="event" ToRole="price_event" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="maple_id" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="category" Type="Int32" Nullable="false" />
+          <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="min_str" Type="Int32" Nullable="false" />
+          <Property Name="max_str" Type="Int32" Nullable="false" />
+          <Property Name="min_dex" Type="Int32" Nullable="false" />
+          <Property Name="max_dex" Type="Int32" Nullable="false" />
+          <Property Name="min_int" Type="Int32" Nullable="false" />
+          <Property Name="max_int" Type="Int32" Nullable="false" />
+          <Property Name="min_luk" Type="Int32" Nullable="false" />
+          <Property Name="max_luk" Type="Int32" Nullable="false" />
+          <Property Name="min_watt" Type="Int32" Nullable="false" />
+          <Property Name="max_watt" Type="Int32" Nullable="false" />
+          <Property Name="min_matt" Type="Int32" Nullable="false" />
+          <Property Name="max_matt" Type="Int32" Nullable="false" />
+          <Property Name="min_hp" Type="Int32" Nullable="false" />
+          <Property Name="max_hp" Type="Int32" Nullable="false" />
+          <Property Name="min_acc" Type="Int32" Nullable="false" />
+          <Property Name="max_acc" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="item_stats" Relationship="Self.fk_stats_item_stats" FromRole="item" ToRole="item_stats" />
+        </EntityType>
+        <EntityType Name="ItemStats">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_id" Type="Int32" Nullable="false" />
+          <Property Name="stats_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="item" Relationship="Self.fk_stats_item_stats" FromRole="item_stats" ToRole="item" />
+          <NavigationProperty Name="stats" Relationship="Self.fk_item_item_stats" FromRole="item_stats" ToRole="stats" />
+          <NavigationProperty Name="price" Relationship="Self.fk_price_item_stats" FromRole="item_stats" ToRole="price" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_stats_id" Type="Int32" Nullable="false" />
+          <Property Name="price1" Type="Int64" Nullable="false" />
+          <Property Name="sold" Type="Boolean" Nullable="false" />
+          <Property Name="source" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="timestamp" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="item_stats" Relationship="Self.fk_price_item_stats" FromRole="price" ToRole="item_stats" />
+          <NavigationProperty Name="price_event" Relationship="Self.fk_price_event_price" FromRole="price" ToRole="price_event" />
+        </EntityType>
+        <EntityType Name="PriceEvent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="price_id" Type="Int32" Nullable="false" />
+          <Property Name="event_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="event" Relationship="Self.fk_price_event_event" FromRole="price_event" ToRole="event" />
+          <NavigationProperty Name="price" Relationship="Self.fk_price_event_price" FromRole="price_event" ToRole="price" />
+        </EntityType>
+        <EntityType Name="Stats">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="str" Type="Int32" Nullable="false" />
+          <Property Name="dex" Type="Int32" Nullable="false" />
+          <Property Name="int" Type="Int32" Nullable="false" />
+          <Property Name="luk" Type="Int32" Nullable="false" />
+          <Property Name="w_att" Type="Int32" Nullable="false" />
+          <Property Name="m_att" Type="Int32" Nullable="false" />
+          <Property Name="slots" Type="Int32" Nullable="false" />
+          <Property Name="hp" Type="Int32" Nullable="false" />
+          <Property Name="acc" Type="Int32" Nullable="false" />
+          <Property Name="percent" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="item_stats" Relationship="Self.fk_item_item_stats" FromRole="stats" ToRole="item_stats" />
+        </EntityType>
+        <Association Name="fk_price_event_event">
+          <End Role="event" Type="maple_marketModel.Event" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="price_event" Type="maple_marketModel.PriceEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="event">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="price_event">
+              <PropertyRef Name="event_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_stats_item_stats">
+          <End Role="item" Type="maple_marketModel.Item" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="item_stats" Type="maple_marketModel.ItemStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="item_stats">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_item_item_stats">
+          <End Role="stats" Type="maple_marketModel.Stats" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="item_stats" Type="maple_marketModel.ItemStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stats">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="item_stats">
+              <PropertyRef Name="stats_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_price_item_stats">
+          <End Role="item_stats" Type="maple_marketModel.ItemStats" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="price" Type="maple_marketModel.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item_stats">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="price">
+              <PropertyRef Name="item_stats_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_price_event_price">
+          <End Role="price" Type="maple_marketModel.Price" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="price_event" Type="maple_marketModel.PriceEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="price">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="price_event">
+              <PropertyRef Name="price_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MapleMarketEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Event" EntityType="maple_marketModel.Event" />
+          <EntitySet Name="Item" EntityType="maple_marketModel.Item" />
+          <EntitySet Name="ItemStats" EntityType="maple_marketModel.ItemStats" />
+          <EntitySet Name="Price" EntityType="maple_marketModel.Price" />
+          <EntitySet Name="PriceEvent" EntityType="maple_marketModel.PriceEvent" />
+          <EntitySet Name="Stats" EntityType="maple_marketModel.Stats" />
+          <AssociationSet Name="fk_price_event_event" Association="Self.fk_price_event_event">
+            <End Role="event" EntitySet="Event" />
+            <End Role="price_event" EntitySet="PriceEvent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_stats_item_stats" Association="Self.fk_stats_item_stats">
+            <End Role="item" EntitySet="Item" />
+            <End Role="item_stats" EntitySet="ItemStats" />
+          </AssociationSet>
+          <AssociationSet Name="fk_item_item_stats" Association="Self.fk_item_item_stats">
+            <End Role="stats" EntitySet="Stats" />
+            <End Role="item_stats" EntitySet="ItemStats" />
+          </AssociationSet>
+          <AssociationSet Name="fk_price_item_stats" Association="Self.fk_price_item_stats">
+            <End Role="item_stats" EntitySet="ItemStats" />
+            <End Role="price" EntitySet="Price" />
+          </AssociationSet>
+          <AssociationSet Name="fk_price_event_price" Association="Self.fk_price_event_price">
+            <End Role="price" EntitySet="Price" />
+            <End Role="price_event" EntitySet="PriceEvent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="maple_marketModelStoreContainer" CdmEntityContainer="MapleMarketEntities">
+          <EntitySetMapping Name="Event">
+            <EntityTypeMapping TypeName="maple_marketModel.Event">
+              <MappingFragment StoreEntitySet="event">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item">
+            <EntityTypeMapping TypeName="maple_marketModel.Item">
+              <MappingFragment StoreEntitySet="item">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="maple_id" ColumnName="maple_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="min_str" ColumnName="min_str" />
+                <ScalarProperty Name="max_str" ColumnName="max_str" />
+                <ScalarProperty Name="min_dex" ColumnName="min_dex" />
+                <ScalarProperty Name="max_dex" ColumnName="max_dex" />
+                <ScalarProperty Name="min_int" ColumnName="min_int" />
+                <ScalarProperty Name="max_int" ColumnName="max_int" />
+                <ScalarProperty Name="min_luk" ColumnName="min_luk" />
+                <ScalarProperty Name="max_luk" ColumnName="max_luk" />
+                <ScalarProperty Name="min_watt" ColumnName="min_watt" />
+                <ScalarProperty Name="max_watt" ColumnName="max_watt" />
+                <ScalarProperty Name="min_matt" ColumnName="min_matt" />
+                <ScalarProperty Name="max_matt" ColumnName="max_matt" />
+                <ScalarProperty Name="min_hp" ColumnName="min_hp" />
+                <ScalarProperty Name="max_hp" ColumnName="max_hp" />
+                <ScalarProperty Name="min_acc" ColumnName="min_acc" />
+                <ScalarProperty Name="max_acc" ColumnName="max_acc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemStats">
+            <EntityTypeMapping TypeName="maple_marketModel.ItemStats">
+              <MappingFragment StoreEntitySet="item_stats">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="stats_id" ColumnName="stats_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Price">
+            <EntityTypeMapping TypeName="maple_marketModel.Price">
+              <MappingFragment StoreEntitySet="price">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="item_stats_id" ColumnName="item_stats_id" />
+                <ScalarProperty Name="price1" ColumnName="price" />
+                <ScalarProperty Name="sold" ColumnName="sold" />
+                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceEvent">
+            <EntityTypeMapping TypeName="maple_marketModel.PriceEvent">
+              <MappingFragment StoreEntitySet="price_event">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="price_id" ColumnName="price_id" />
+                <ScalarProperty Name="event_id" ColumnName="event_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stats">
+            <EntityTypeMapping TypeName="maple_marketModel.Stats">
+              <MappingFragment StoreEntitySet="stats">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="str" ColumnName="str" />
+                <ScalarProperty Name="dex" ColumnName="dex" />
+                <ScalarProperty Name="int" ColumnName="int" />
+                <ScalarProperty Name="luk" ColumnName="luk" />
+                <ScalarProperty Name="w_att" ColumnName="w_att" />
+                <ScalarProperty Name="m_att" ColumnName="m_att" />
+                <ScalarProperty Name="slots" ColumnName="slots" />
+                <ScalarProperty Name="hp" ColumnName="hp" />
+                <ScalarProperty Name="acc" ColumnName="acc" />
+                <ScalarProperty Name="percent" ColumnName="percent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

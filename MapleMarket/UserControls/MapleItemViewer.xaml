@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="MapleMarket.Views.MapleItemViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:conv="clr-namespace:MapleMarket.Converters"
+             xmlns:local="clr-namespace:MapleMarket.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="140.625" d:DesignWidth="470.937">
+    <UserControl.Resources>
+        <conv:EmptyStringToDefaultConverter x:Key="EmptyStringToDefaultConverter"></conv:EmptyStringToDefaultConverter>
+        <conv:ImageToAssetConverter x:Key="ImageToAssetConverter"></conv:ImageToAssetConverter>
+    </UserControl.Resources>
+    <GroupBox Grid.Row="1"
+              Margin="5,0,5,5"
+              Header="{Binding name, FallbackValue='- No Maple Item selected -'}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="17"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Image Grid.RowSpan="2"
+                   Height="35"
+                   Width="35"
+                   Stretch="None"
+                   Source="{Binding image, Converter={StaticResource ImageToAssetConverter}}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"></Image>
+
+            <TextBlock Grid.Column="1"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="5,0,0,0"
+                           Text="Description :"></TextBlock>
+            <ScrollViewer Grid.Row="1"
+                          Grid.Column="1"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          Margin="5,2,5,5"
+                          HorizontalContentAlignment="Left"
+                          VerticalContentAlignment="Top"
+                          HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto">
+                <TextBlock TextWrapping="Wrap"
+                           Text="{Binding description, Converter={StaticResource EmptyStringToDefaultConverter}, ConverterParameter='- No Description -', FallbackValue='- No Maple Item selected -'}"></TextBlock>
+            </ScrollViewer>
+
+        </Grid>
+    </GroupBox>
+</UserControl>
